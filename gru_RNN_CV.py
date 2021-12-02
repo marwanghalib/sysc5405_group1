@@ -527,7 +527,7 @@ def test_dataset_evaluate(classifier, x_test_data, y_test_data, classifierTypeNa
 
 #READ TRAINING DATA SET PROVIDED
 
-df = pd.read_csv ('/Users/PalwashaW_Shaikh/Desktop/University of Ottawa/Fall 2021/SYSC 5405 /Assignments/Project/train_data.csv')#header=None)
+df = pd.read_csv ('train_data.csv')#header=None)
 print(df)
 print(df.head())
 
