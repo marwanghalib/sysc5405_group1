@@ -45,7 +45,7 @@ from sklearn.tree import DecisionTreeClassifier # Import
 
 #READ TRAINING DATA SET PROVIDED
 
-df = pd.read_csv ('/Users/PalwashaW_Shaikh/Desktop/University of Ottawa/Fall 2021/SYSC 5405 /Assignments/Project/train_data.csv')#header=None)
+df = pd.read_csv ('train_data.csv')#header=None)
 print(df)
 print(df.head())
 
@@ -151,7 +151,7 @@ from tensorflow.keras.models import Sequential
 
 from tensorflow.keras.layers import Dense
 
-from tensorflow.keras.layers import LSTM, SimpleRNN
+from tensorflow.keras.layers import LSTM, SimpleRNN, GRU
 
 from tensorflow.keras.layers import Dropout
 
