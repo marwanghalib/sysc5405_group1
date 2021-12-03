@@ -59,6 +59,7 @@ def print_confusion_matrix(Y_test,Y_pred):
     plt.figure()
     cm_matrix = pd.DataFrame(data=cm, index=['Actual Neg:0','Actual Pos:1'], columns=['Predict Neg:0', 'Predict Pos:1'])
     sns.heatmap(cm_matrix, annot=True, fmt='d', cmap='YlGnBu')
+    plt.savefig('simple_rnn_confusion_matrix.png')
     plt.show()
     return cm
 
@@ -130,6 +131,7 @@ def plot_roc_CV(fpr_cv,tpr_cv,aucs,ns_fpr,ns_tpr,ns_auc,mean_tpr,mean_fpr,mean_a
     plt.ylabel('True Positive Rate (Sensitivity)')
     plt.legend(prop={'size': 10})
     #plt.legend(bbox_to_anchor=(1.04,0.5), loc="center left")
+    plt.savefig('simple_rnn_roc_curve.png')
     plt.show()
 
 def plot_pr_re_curve_CV(precision_list,recall_list,pr_auc_list,no_skill,ns_pr_auc,mean_precision,mean_recall,mean_pr_auc,g_title):
@@ -149,6 +151,7 @@ def plot_pr_re_curve_CV(precision_list,recall_list,pr_auc_list,no_skill,ns_pr_au
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.legend(prop={'size': 10})
+    plt.savefig('simple_rnn_pr_re_curve.png')
     plt.show()
 
 def train_evaluate_model(data_x, data_y, classifier, classifierTypeName, numFeat, num_epochs, num_bsize,valid_dataset):
@@ -406,6 +409,7 @@ def train_evaluate_model(data_x, data_y, classifier, classifierTypeName, numFeat
     plt.plot(train_hist_loss, label='train')
     plt.plot(test_hist_loss, label='test')
     plt.legend()
+    plt.savefig('simple_rnn_training_history_loss.png')
     plt.show()
 
     #plot training history - acc
@@ -414,6 +418,7 @@ def train_evaluate_model(data_x, data_y, classifier, classifierTypeName, numFeat
     plt.plot(train_hist_acc, label='train')
     plt.plot(test_hist_acc, label='test')
     plt.legend()
+    plt.savefig('simple_rnn_training_history_acc.png')
     plt.show()
 
     
@@ -460,6 +465,7 @@ def test_dataset_evaluate(classifier, x_test_data, y_test_data, classifierTypeNa
     plt.xlabel('False Positive Rate (1 - Specificity)')
     plt.ylabel('True Positive Rate (Sensitivity)')
     plt.legend()
+    plt.savefig('simple_rnn_roc_held_25_percent.png')
     plt.show()
     
     # calculate precision-recall curve
@@ -476,6 +482,7 @@ def test_dataset_evaluate(classifier, x_test_data, y_test_data, classifierTypeNa
     plt.ylabel('Precision')
     plt.title('Pr-Re curve for held out 25 percent test data')
     plt.legend()
+    plt.savefig('simple_rnn_pr_re_held_25_percent.png')
     plt.show()
     
     print('RNN AUC ROC : {:.4f}'.format(ROC_AUC))
@@ -587,6 +594,7 @@ print(featureScores2.nlargest(25,'Score ANOVA F'))
 f2=featureScores2.nlargest(25,'Score ANOVA F')
 f2.plot.bar(x="Feature", y="Score ANOVA F", rot=0)
 plt.xticks(rotation=90)
+plt.savefig('simple_rnn_anova_top_25.png')
 plt.show()
 plt.clf()
 
