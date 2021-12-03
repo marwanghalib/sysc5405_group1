@@ -41,7 +41,7 @@ from sklearn.feature_selection import RFE,RFECV
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LSTM, SimpleRNN
-from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import Dropout, GRU
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 import tensorflow as tf
 
@@ -264,7 +264,7 @@ def train_evaluate_model(data_x, data_y, classifier, classifierTypeName, numFeat
         #print(i_re50)
         pr_re50=precision[i_re50] #precision at re 50%
         #print(pr_50)
-        pr_re50_list.append(pr_50)
+        pr_re50_list.append(pr_re50)
         
         
         print()
