@@ -99,7 +99,7 @@ print(featureScores2.nlargest(25,'Score ANOVA F'))
 f2=featureScores2.nlargest(25,'Score ANOVA F')
 f2.plot.bar(x="Feature", y="Score ANOVA F", rot=0)
 plt.xticks(rotation=90)
-plt.show()
+plt.savefig("REGRESSION_anova_gru_rnn.png")
 plt.clf()
 
 
@@ -189,7 +189,7 @@ callbacks.append(mcp)
 
 #Training the recurrent neural network
 
-simp_history=simp_rnn.fit(x_training_data, y_training_data, epochs = 100, batch_size = 32, callbacks=callbacks, validation_data=(x_test_data, y_test_data),verbose=True)
+simp_history=simp_rnn.fit(x_training_data, y_training_data, epochs = 10, batch_size = 32, callbacks=callbacks, validation_data=(x_test_data, y_test_data),verbose=True)
 
 
 test_loss = simp_rnn.evaluate(x_test_data, y_test_data)
@@ -209,7 +209,7 @@ plt.title("RNN Loss")
 plt.plot(simp_history.history['loss'], label='train')
 plt.plot(simp_history.history['val_loss'], label='test')
 plt.legend()
-plt.show()
+plt.savefig("REGRESSION_loss_gru_rnn.png")
 
 
 
@@ -233,25 +233,28 @@ print(predictions)
 
 plt.clf() #This clears the old plot from our canvas
 
-
-#Plotting the predicted values against actual 
-
-plt.plot(predictions, color = '#135485', label = "Predictions")
-plt.show()
-
-plt.title('DTI Predictions')
-plt.clf()
 #unscale y test data labels
 unscaled_ytest = scaler.inverse_transform(y_test_data)
 print(unscaled_ytest)
-plt.plot(unscaled_ytest, color = 'black', label = "Real Data")
-plt.title('DTI Actual')
-plt.show()
+#Plotting the predicted values against actual 
+
+plt.plot(predictions, color = 'red', label = "Predictions", alpha=0.5)
+plt.plot(unscaled_ytest, color = 'black', label = "Real Data", alpha=0.5)
+plt.legend()
+plt.title('DTI Predictions vs. actual')
+
+plt.savefig("REGRESSION_dti_gru_rnn.png")
 
 print(predictions)
 print(unscaled_ytest)
 print("Difference between True and Predicted KIBA")
-print(np.subtract(unscaled_ytest, predictions))
+difference=np.subtract(unscaled_ytest, predictions)
+print(difference)
+
+plt.clf() #This clears the old plot from our canvas
+# Creating plot
+plt.boxplot(difference)
+plt.savefig("REGRESSION_box_plot_of_errors_gru_rnn.png")
 
 # simp_rnn_predClass=[]
 # #get labels to compare for fun KIBA >12.1 True 
