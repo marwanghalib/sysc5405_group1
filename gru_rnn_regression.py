@@ -58,6 +58,8 @@ print(Y_target)
 #PRE_PROCESSING WITH MINMAX Scaler
 X=pd.DataFrame(X_feat)
 scaler = MinMaxScaler()
+print("YOOOOOOOOO 1")
+print(X.shape)
 X_feat_t=scaler.fit_transform(X)
 X_feat_s=pd.DataFrame(X_feat_t) #Scaled features
 print(X_feat_s)
@@ -190,7 +192,7 @@ callbacks.append(mcp)
 #Training the recurrent neural network
 
 simp_history=simp_rnn.fit(x_training_data, y_training_data, epochs = 10, batch_size = 32, callbacks=callbacks, validation_data=(x_test_data, y_test_data),verbose=True)
-
+simp_rnn.save("gru_regression_last.h5")
 
 test_loss = simp_rnn.evaluate(x_test_data, y_test_data)
 print('Test loss:', test_loss)
@@ -234,6 +236,8 @@ print(predictions)
 plt.clf() #This clears the old plot from our canvas
 
 #unscale y test data labels
+print("YOOOOOOOOO 2")
+print(y_test_data.shape)
 unscaled_ytest = scaler.inverse_transform(y_test_data)
 print(unscaled_ytest)
 #Plotting the predicted values against actual 
